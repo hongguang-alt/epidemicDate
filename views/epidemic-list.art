@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/normize.css">
+    <title>疫情</title>
+</head>
+
+<body>
+    <div class='title'>数据分析列表</div>
+    <div class='datanum'>全国确诊人数：<span> {{dataNum}} </span></div>
+    <div class='list'>
+            <div class='flex formtitle'>
+                <div>地区</div>
+                <div>确诊人数</div>
+                <div>死亡人数</div>
+                <div>治愈人数</div>
+            </div>
+            <div class='flex formtitle'>
+                <div>蚌埠</div>
+                <div>{{datacity.confirmedCount}}</div>
+                <div>{{datacity.deadCount}}</div>
+                <div>{{datacity.curedCount}}</div>
+            </div>  
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {{ each data }}
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <span data-toggle="collapse"  href="#{{$index}}" aria-expanded="true" aria-controls="{{$index}}">
+                                <ul class='flex'>
+                                    <li>{{$value.provinceShortName}}</li>
+                                    <li>{{$value.confirmedCount}}</li>
+                                    <li>{{$value.deadCount}}</li>
+                                    <li>{{$value.curedCount}}</li>
+                                </ul>
+                            </span>
+                        </h4>
+                    </div>
+                    <div id="{{$index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                    {{ each $value.cities }}
+                       <ul class='flex'>
+                            <li>{{$value.cityName}}</li>
+                            <li>{{$value.confirmedCount}}</li>
+                            <li>{{$value.deadCount}}</li>
+                            <li>{{$value.curedCount}}</li>
+                        </ul>
+                    {{/each}}
+                    </div>
+                </div>
+             </div>
+             {{/each}}
+    <div class='xiu'>本界面由绣提供各方面支持</div>
+    </div>
+    </div>
+</body>
+<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src = '/js/bootstrap/jQuery.js'></script>
+<script src = '/js/bootstrap/bootstrap.min.js'></script>
+<script src = '/js/index/map.js'></script>
+
+<script>
+    $('.collapse').collapse()
+</script>
+</html>
